@@ -1,0 +1,155 @@
+{-# STDLIB_VERSION 5 #-}
+{-# CONTENT_TYPE DAPP #-}
+{-# SCRIPT_TYPE ACCOUNT #-}
+
+let adminmsg = "Only admin can call this function"
+
+func isAdmin(address: ByteVector) = {
+  let c = toBase58String(address)
+  if(isDefined(getString("admin")))
+   then if(c==getStringValue("admin") || c==toBase58String(this.bytes))
+    then true
+    else false
+  else if(c==toBase58String(this.bytes))
+   then true
+   else false
+}
+
+func getValidPair(asset1:String,asset2:String) = {
+  if(isDefined(getBoolean(asset1+"_"+asset2)))
+   then asset1+"_"+asset2
+  else if isDefined(getBoolean(asset2+"_"+asset1))
+   then asset2+"_"+asset1
+  else ""
+}
+
+func isValidPair(asset1:String,asset2:String) = {
+  let x = match getValidPair(asset1,asset2) {
+    case c:String => if(c == "") then false else true
+    case _ => false
+  }
+  x
+}
+
+func checkAssetId(asset: ByteVector|Unit) = {
+  let a = match asset {
+    case v: ByteVector => toBase58String(v)
+    case _  => "WAVES"
+  }
+  a
+}
+
+func toPay(asset:String) ={
+  if(asset=="WAVES")
+   then unit
+  else fromBase58String(asset)
+}
+
+@Callable(i)
+func addAdmin(address: String) = {
+  if(isAdmin(i.caller.bytes))
+   then [StringEntry("admin",address)]
+  else throw(adminmsg)
+}
+
+@Callable(i)
+func setOracle(address: String) = {
+  if(isAdmin(i.caller.bytes))
+   then [StringEntry("oracle",address)]
+  else throw(adminmsg)
+}
+
+@Callable(i)
+func addPair(asset1:String,asset2:String) = {
+  if(isAdmin(i.caller.bytes))
+    then if(isValidPair(asset1,asset2))
+     then throw("This pair has been previously added")
+    else [BooleanEntry(asset1+"_"+asset2, true)]
+  else throw(adminmsg)
+}
+
+@Callable(i)
+func feeSwap(fee: Int) = {
+  if(isAdmin(i.caller.bytes))
+   then [IntegerEntry("fee",fee)]
+  else throw(adminmsg)
+}
+@Callable(i)
+func Swap(asset1:String,asset2:String,price:Int) = {
+  let D = match (i.payments[0].assetId) {
+    case o: Unit => pow(10,0,8,0,0,HALFUP)
+    case x: ByteVector => pow(10,0,8,0,0,HALFUP)
+  } 
+  if(isValidPair(asset1,asset2))
+   then if(!isDefined(getInteger(getValidPair(asset1,asset2)+toBase58String(i.caller.bytes)))) 
+    then if(checkAssetId(i.payments[0].assetId) == getStringValue(getValidPair(asset1,asset2)+"_asset2"))
+    then if(price == getIntegerValue(getValidPair(asset1,asset2)+"_price"))
+     then if((i.payments[0].amount*D/price) < getIntegerValue(getValidPair(asset1,asset2)+"_total"))
+      then [
+       ScriptTransfer(Address(i.caller.bytes),(i.payments[0].amount*D/price),toPay(getStringValue(getValidPair(asset1,asset2)+"_asset1"))),
+       IntegerEntry(getValidPair(asset1,asset2)+toBase58String(i.caller.bytes),i.payments[0].amount),
+       IntegerEntry(getValidPair(asset1,asset2)+toBase58String(i.caller.bytes)+"_price",price),
+       IntegerEntry(getValidPair(asset1,asset2)+toBase58String(i.caller.bytes)+"_height",height),
+       IntegerEntry(getValidPair(asset1,asset2)+toBase58String(i.caller.bytes)+"_received",(i.payments[0].amount*D/price)),
+       StringEntry(getValidPair(asset1,asset2)+toBase58String(i.caller.bytes)+"_asset",checkAssetId(i.payments[0].assetId)),
+       IntegerEntry(getValidPair(asset1,asset2)+"_total",getIntegerValue(getValidPair(asset1,asset2)+"_total")-(i.payments[0].amount*D/price))
+      ]
+     else throw("Amount above that available for Swap. Try decreasing the value.")
+    else throw("Invalid price.")
+   else throw("Invalid payment asset. Use the second asset of the pair")
+   else throw("You already have a Guaranteed Swap made before, cancel the previous one or withdraw the current one to create a new Swap.")
+  else throw("Invalid Pair.")
+}
+
+@Callable(i)
+func Withdraw(asset1:String,asset2:String) = {
+  if(isValidPair(asset1,asset2))
+   then if(isDefined(getInteger(getValidPair(asset1,asset2)+toBase58String(i.caller.bytes))))
+    then if(checkAssetId(i.payments[0].assetId) == getStringValue(getValidPair(asset1,asset2)+"_asset1"))
+     then if(i.payments[0].amount==getIntegerValue(getValidPair(asset1,asset2)+toBase58String(i.caller.bytes)+"_received"))
+      then if(i.payments[1].amount == (i.payments[0].amount*getIntegerValue("fee")/100))
+       then [
+       DeleteEntry(getValidPair(asset1,asset2)+toBase58String(i.caller.bytes)),
+       DeleteEntry(getValidPair(asset1,asset2)+toBase58String(i.caller.bytes)+"_price"),
+       DeleteEntry(getValidPair(asset1,asset2)+toBase58String(i.caller.bytes)+"_height"),
+       DeleteEntry(getValidPair(asset1,asset2)+toBase58String(i.caller.bytes)+"_received"),
+       DeleteEntry(getValidPair(asset1,asset2)+toBase58String(i.caller.bytes)+"_asset"),
+       ScriptTransfer(Address(i.caller.bytes),getIntegerValue(getValidPair(asset1,asset2)+toBase58String(i.caller.bytes)),toPay(getStringValue(getValidPair(asset1,asset2)+"_asset2")))
+       ]
+      else throw("Invalid Amount Fee Payment. Try "+toString(i.payments[0].amount*getIntegerValue("fee")/100))
+     else throw("Invalid Amount. Try "+toString(getIntegerValue(getValidPair(asset1,asset2)+toBase58String(i.caller.bytes)+"_received")))
+    else throw("Invalid payment asset. Use the first asset of the pair")
+   else throw("You do not have a Guaranteed swap for this pair. Create a new Swap.")
+  else throw("Invalid Pair.")
+}
+
+@Callable(i)
+func depositOracle(assetValue: String, assetPrice: String, price: Int) = {
+  let oracleAddress = match getString("oracle") {
+    case  ix: String => ix
+    case _ => throw("Oracle is not defined. Please contact the admin.")
+  }
+  let n = checkAssetId(i.payments[0].assetId)
+  let a = match getInteger(assetValue+"_"+assetPrice+"_"+n) {
+    case ix: Int => ix
+    case _ => 0
+  }
+  let nn = match getInteger(assetValue+"_"+assetPrice+"_total") {
+    case xx:Int=>xx+i.payments[0].amount
+    case _ => i.payments[0].amount
+  }
+  if(toBase58String(i.caller.bytes) == oracleAddress)
+   then [
+    IntegerEntry(assetValue+"_"+assetPrice+"_"+n, a+i.payments[0].amount),
+    IntegerEntry(assetValue+"_"+assetPrice+"_price", price),
+    BooleanEntry(assetValue+"_"+assetPrice, true),
+    StringEntry(assetValue+"_"+assetPrice+"_asset1", assetValue),
+    StringEntry(assetValue+"_"+assetPrice+"_asset2", assetPrice),
+    IntegerEntry(assetValue+"_"+assetPrice+"_total", nn)
+  ]
+  else throw(adminmsg)
+}
+
+@Verifier(tx)
+func verify() = sigVerify(tx.bodyBytes, tx.proofs[0], tx.senderPublicKey)
+        

@@ -1,0 +1,1131 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Karla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+  
+  *{
+  outline: none! important;
+  font-family: 'Karla', sans-serif;
+  font-weight: 600;
+  }
+
+
+  p{
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+  
+  a{
+      text-decoration: none;
+  }
+
+  button:focus{
+    outline: thin dotted;
+        outline: 0px auto -webkit-focus-ring-color;
+        outline-offset: 0px;
+}
+a:focus{
+    outline: thin dotted;
+        outline: 0px auto -webkit-focus-ring-color;
+        outline-offset: 0px;
+}
+
+img:focus{
+    outline: thin dotted;
+        outline: 0px auto -webkit-focus-ring-color;
+        outline-offset: 0px;
+}
+
+input:focus{
+    outline: thin dotted;
+        outline: 0px auto -webkit-focus-ring-color;
+        outline-offset: 0px;
+}
+  
+  img{
+  user-drag: none; 
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  }
+  
+  body{
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: 'Karla', sans-serif;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    overflow-x: hidden;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+html, body{
+  width: 100% !important;
+  min-width: 100%;
+  min-height: 100vh;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+  /* Track */
+  ::-webkit-scrollbar-thumb {
+    background: #005f84;
+    border-radius: 8px;
+}
+  
+  /* Handle */
+  ::-webkit-scrollbar-track {
+    box-shadow: #005f842e 0px 2px 10px;
+    background-color: #4ba1c381;
+    border-radius: 10px;
+}
+
+div.all{
+  display: none;
+  padding: 20px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+*{
+    list-style-type:none
+}
+
+body{
+    background-color: #fff;
+}
+
+
+
+nav{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    background: #fff;
+    box-shadow: rgb(171 133 115 / 16%) 0px 2px 10px;
+    position: relative;
+    z-index: 100;
+    padding: 10px 20px;
+}
+
+nav{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    background: #fff;
+    box-shadow: rgb(171 133 115 / 16%) 0px 2px 10px;
+    position: relative;
+    z-index: 100;
+    padding: 10px 20px;
+    height: 64px;
+}
+
+#maintenance{
+    display: flex;
+    width: 100%;
+    /* padding: 5px; */
+    text-align: left;
+    /* background-color: #036085; */
+    color: #fff;
+
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.css-1zef0 {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+.css-1827r8v {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    min-height: 40px;
+    max-height: 200px;
+    padding: 10px;
+    background-color: rgb(248, 147, 0);
+    color: rgb(255, 255, 255);
+    overflow: auto;
+}
+.css-zu5qvl {
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    padding: 7px;
+    position: fixed;
+    opacity: 0.5;
+    top: 0px;
+    right: 0px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+}
+
+.css-zggr44 {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    max-width: calc(100% - 40px);
+}
+
+.css-np91oi {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    font-size: 12px;
+    line-height: normal;
+    /* padding-left: 44px; */
+}
+.carregamento{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: #fff;
+    z-index: 9999;
+    animation-name: carrge;
+    animation-delay: 0.65s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    display: flex;
+    flex-direction: column;
+}
+
+#titledarkmode{
+    color: #fff;
+    margin-left: -110px;
+    margin-top: -50px;
+}
+
+@keyframes carrge {
+    0%,50%{
+        opacity: 1;
+    }
+    50%,100%{
+        opacity: 0;
+        z-index: -9999;
+        display: none;
+    }
+}
+
+
+.carregamento div{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.carregamento div .a{
+    width: 164px;
+    height: 100px;
+}
+
+.carregamento article{
+    width: 0%;
+    height: 3px;
+    background-color: #fff;
+    animation-name: cc;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+
+#top_nav{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    background: linear-gradient(#4ba1c3 0%, #005f84 100%);
+}
+
+#top_nav div[a]{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: center;
+    padding: 5px;
+    height: 70px;
+}
+
+#top_nav div[a] div{
+    max-width: max-content;
+    width: 100%;
+    flex: 1;
+    background-color: #03445d;
+    padding: 10px 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#top_nav div[a] div span{
+    color: rgb(209, 214, 216);
+    margin-right: 4px;
+    font-weight: 600;
+    line-height: 1.5;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+#top_nav div[a] div span.color_warning{
+    color: #ffb237;
+}
+
+#top_nav div[a] div span.color_destaque,#top_nav div[a] div span.color_destaque a{
+    color: #ffb237
+}
+
+#top_nav button.close_nav{
+    color: #fff;
+    background-color: #fff0;
+    border: none;
+    width: 48px;
+    padding: 0px;
+}
+
+
+@keyframes cc {
+    0%,25%{
+        width: 0%;
+    }
+    25%,50%{
+        width: 10%;
+    }
+    50%,75%{
+        width: 40%;
+    }
+    75%,100%{
+        width: 100%;
+    }
+}
+
+
+#top_nav div[a]{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: center;
+    padding: 5px;
+    height: 70px;
+}
+
+#top_nav div[a] div{
+    max-width: max-content;
+    width: 100%;
+    flex: 1;
+    background-color: #03445d;
+    padding: 10px 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#top_nav div[a] div span{
+    color: rgb(209, 214, 216);
+    margin-right: 4px;
+    font-weight: 600;
+    line-height: 1.5;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+#top_nav div[a] div span.color_warning,#top_nav div[a] div span.color_destaque,#top_nav div[a] div span.color_destaque a{
+    color: #ffb237;
+}
+
+nav div{
+    height: 100%;
+    display: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+nav div a{
+    padding: 0px 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    font-size: 17px;
+}
+
+nav [onclick="connectWallet()"]{
+    height: 100%;
+    border-radius: 10px;
+    border: 0px solid #fff;
+    padding: 12px 16px;
+    width: fit-content;
+    min-width: 0px;
+    font-size: 15px;
+    color: #fff;
+    background-color: #036085 /*#036085*/;
+    margin-right: 10px;
+}
+
+nav a[href="#Home"]{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+nav a[href="#Home"] p{
+    margin-left: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.carregamento div .maincircular{
+    display: grid;
+    text-align: center;
+    place-items: center;
+    background: #fff;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    height: var(--tt);
+    width: var(--tt);
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+.carregamento div .maincircular .circular, .carregamento div .maincircular .circular:after{
+    border-radius: 50%
+}
+
+.carregamento div .maincircular .circular{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid #036085;
+    height: var(--tt);
+    width: var(--tt);
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 0.3em solid rgba(225, 1, 1, 0.2);
+    border-right: 0.3em solid rgba(191, 8, 8, 0.2);
+    border-bottom: 0.3em solid rgba(255, 9, 9, 0.2);
+    border-left: 0.3em solid #5b0000;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load8 .25s infinite linear;
+    animation: load8 .25s infinite linear;
+}
+
+@keyframes load8 {
+    0% {
+        -webkit-transform: rotate(
+    0deg);
+        transform: rotate(
+    0deg);
+    }
+    100% {
+        -webkit-transform: rotate(
+    360deg);
+        transform: rotate(
+    360deg);
+    }
+}
+
+.logo-nav div:nth-child(2) img{
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: -20px;
+    border-radius: 10px;
+}
+
+.logo-nav div:nth-child(1) span{
+    width: 220px;
+    line-height: 0.5rem;
+    color: #333;
+    font-size: 18px;
+    margin-left: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+[src="/img/logo.ico"]{
+    height: 40px;
+    border-radius: 10px;
+}
+
+#connectWallet, #otherTecnologies, #loginotherTecnologies, #loginbiconwallet{
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background: rgba(41,44,48,.32);
+    z-index: 10000;
+}
+
+
+#connectWallet article,#otherTecnologies article,#loginotherTecnologies article,#loginbiconwallet article{
+    display: inline-block;
+    position: relative;
+    max-width: 400px;
+    margin: auto;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+    background-color: #fff;
+    padding: 40px;
+    box-sizing: border-box;
+    width: 400px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px 0 rgb(0 0 0 / 12%);
+    background: url(/img/connect.svg) no-repeat 0 32px #036085;
+    padding: 0;
+}
+
+#loginbiconwallet .iconp{
+    background-color: rgba(0, 191, 90,1);
+    padding: 20px;
+    width: 125%;
+    margin-top: -40px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 140px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginbiconwallet .iconp div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+
+#loginbiconwallet .iconp p:nth-child(2){
+    color: #fff;
+    font-size: 14px;
+    padding-top: 10px;
+    font-weight: 200;
+}
+
+#loginbiconwallet .iconp div p:nth-child(2){
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    padding-left: 10px;
+}
+
+#connectWallet article img, #connectWallet article svg,#otherTecnologies article img, #otherTecnologies article svg, #loginotherTecnologies article svg, #loginotherTecnologies article img, #loginbiconwallet article svg, #loginbiconwallet article img{
+    height: 70%;
+    animation: floatIconWallet 3s ease-in-out infinite;
+}
+
+.close-popup {
+    width: 15px;
+    height: 14px;
+    position: absolute;
+    cursor: pointer;
+    -webkit-transform: none;
+    transform: none;
+    background: url(/img/icon-close-white.08312e38.svg);
+    top: 0;
+    right: 0;
+    margin: 17px 17px 0 0;
+}
+
+.popup-header {
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+    color: #fff;
+    line-height: 32px;
+    margin-top: 48px;
+    margin-bottom: 48px;
+}
+
+.popup-header-info {
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+    width: 230px;
+    margin: 8px auto 40px;
+}
+
+.popup-actions {
+    display: block;
+    background: #fff;
+    padding: 40px;
+    border-radius: 0 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+
+}
+.popup__button {
+    flex: none;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    height: 50px;
+    font-size: 18px;
+    color: #333;
+    border: 0;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.popup__button_proceed {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-container.auth-popup .popup__button {
+    flex: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 54px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #292c30;
+    border: 1px solid #e7e7eb;
+    border-radius: 12px;
+    cursor: pointer;
+    text-transform: none;
+    margin: 0 0 8px;
+    text-align: left;
+    padding: 0 16px;
+}
+
+.popup-container.auth-popup .popup-actions .exchange-mail {
+    position: relative;
+}
+
+.popup-container.auth-popup .popup__button.popup__button_proceed {
+    background: #fff;
+}
+
+.popup__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-size: 15px;
+    text-decoration: underline;
+    color: #036085;
+}
+
+.popup__documentation_icon {
+    margin-right: 12px;
+    stroke: #036085;
+    color: #036085;
+}
+.recommended-badge {
+    text-transform: uppercase;
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    color: #036085;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 9px;
+    line-height: 12px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    background: #bfd7e0;
+    border-radius: 6px;
+}
+
+
+.popup-header-info a{
+    color: #fff;
+    text-decoration: underline;
+}
+
+nav button[onclick="connectWallet()"],nav button[onclick="viewInfoAccount()"]{
+    height: 100%;
+    border-radius: 10px;
+    border: 0px solid #fff;
+    padding: 12px 16px;
+    width: fit-content;
+    min-width: 0px;
+    font-size: 17px;
+    color: #fff;
+    background-color: #036085;
+    margin-right: 10px;
+}
+
+.menuAccount button[s]:hover{
+    box-shadow: -5px 5px 5px 0px #e0e0e0;
+}
+
+.menuAccount button[s] p{
+    flex: 1;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    text-align: left;
+}
+.menuAccount button[s] svg{
+    width: 20px;
+    height: 20px;
+}
+.menuAccount{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: space-between;
+    position: relative;
+}
+
+.menuAccount button[close]{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: #fff;
+    border: none;
+}
+
+.menuAccount div[acc]{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    margin-top: 15px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.menuAccount div[acc] img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+.menuAccount div[acc] div:nth-child(2){
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0px 20px;
+}
+
+.menuAccount div[acc] div:nth-child(2) p{
+    margin-bottom: 5px;
+}
+
+.menuAccount div[acc] div:nth-child(2) a{
+    color: #018c77;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.menuAccount div[sald]{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 0px;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 15px;
+}
+
+.menuAccount div[sald] img{
+    height: 40px;
+    border-radius: 50%;
+}
+
+.menuAccount div[sald] div:nth-child(2){
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    margin-left: 10px;
+}
+
+.menuAccount div[sald] div:nth-child(2) p{
+    font-size: 16px;
+}
+
+.menuAccount button[s]{
+    margin: 5px 5px;
+    height: 56px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    text-align: center;
+}
+
+.menuAccount button[s] p{
+    font-size: 16px;
+}
+
+.menuAccount button[s] svg{
+    margin: 0px 10px;
+}
+
+
+center{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100%;
+    height: 100%;
+    flex: 1;
+    padding: 20px 0px;
+}
+
+center article div:nth-child(1) a[href="#Withdraw"],center article div:nth-child(1) a[href="#Swap"]{
+    display: flex;
+    width: 110px;
+    height: 40px;
+    border-radius: 15px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background: #e0e0e0;
+    font-size: 16px;
+    color: #333;
+    flex: 1;
+}
+center article div:nth-child(1) a[href="#Swap"][select],center article div:nth-child(1) a[href="#Withdraw"][select]{
+    display: flex;
+    width: 110px;
+    height: 40px;
+    border-radius: 15px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background: #11142b;
+    font-size: 16px;
+    color: #fff;
+}
+
+center article{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    box-shadow: -5px 5px 10px 0px #e0e0e0;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 350px;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+}
+
+center article div:nth-child(1)#select{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background: #e0e0e0;
+    border-radius: 15px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 10px;
+}
+
+center article button:nth-child(4),center article button:nth-child(5){
+    font-size: 16px;
+    color: #fff;
+    border-radius: 15px;
+    /* padding: 10px; */
+    background: #11142b;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    text-align: center;
+}
+
+center article button:nth-child(5){
+    display: none;
+    background-color: #ffb237;
+    margin-top: 10px;
+}
+
+:disabled{
+    opacity: 0.75;
+}
+center article  section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+center article section p{
+    margin: 0px;
+    color: #4e529a;
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+#Withdraw,#Swap{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    padding: 20px 0px;
+}
+
+#Withdraw p,#Swap p{
+    margin: 10px 0px;
+    text-align: left;
+    width: 100%;
+}
+
+#Withdraw button,#Swap button, #Swap div:nth-child(4), #Swap div:nth-child(6), #Swap div:nth-child(8), #Withdraw div:nth-child(4), #Withdraw div:nth-child(6), #Withdraw div:nth-child(8){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    height: 45px;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    box-shadow: -5px 5px 10px 0px #e0e0e0;
+}
+
+center article input{
+    width: 100%;
+    flex: 1;
+    font-size: 16px;
+    border: none;
+    margin: 0px;
+    padding: 0px 16px;
+}
+
+#Withdraw button p,#Swap button p{
+    text-align: center;
+    width: 120px;
+    font-size: 16px;
+    color: #333;
+}
+
+#howItWork{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    color: #333;
+}
+
+#howItWork p{
+    padding: 10px 0px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#howItWork div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    color: #4e529a;
+}
+
+#Swap div:nth-child(4) span{
+    color: #333;
+    margin: 0px 5px;
+}
+
+#Swap button div,#Withdraw button div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#Withdraw div:nth-child(4) span,#Withdraw div:nth-child(6) span{
+    margin: 0px 2.5px;
+}
+
+#Withdraw div:last-child div:last-child {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px 0px;
+    color: #333;
+}
+
+#Withdraw div:last-child  p{
+    padding-top: 10px;
+}
+
+#Withdraw button div img,#Swap button div img{
+    height: 25px;
+    border-radius: 50%;
+}
+
+#Withdraw button div img:last-child,#Swap button div img:last-child{
+    margin-left: -10px;
+}
+
+#Swap div:nth-child(6) span:last-child,#Withdraw div:nth-child(6) span:last-child{
+    margin-left: 5px;
+}
+
+#Withdraw div:last-child div:last-child span:nth-child(2){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}

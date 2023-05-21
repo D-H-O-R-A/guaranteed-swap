@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guaranteed Swap - Demo</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <meta name="title" content="Guaranteed Swap - Demo">
+    <meta name="description" content="Guaranteed Swap demo for the Puzzle Swap mini-hackathon">
+    <link rel="shortcut icon" href="/img/logo.ico" type="image/x-icon">
+    <meta name="keywords" content="bitcoin, crypto, token, coin, waves, swap, dex, puzzle swap, Guaranteed Swap, DeFi">
+    <link rel="manifest" href="/manifest.json">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/src/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!--javascript-->
+
+    <!--waves dev tools-->
+    <script src="/waves-dev-tools/client-logs.min.js" async></script>
+    <script src="/waves-dev-tools/provider-cloud.min.js" async></script>
+    <script src="/waves-dev-tools/provider-ledger.js" async></script>
+    <script src="/waves-dev-tools/provider-seed.js" async></script>
+    <script src="/waves-dev-tools/provider-web.min.js" async></script>
+    <script src="/waves-dev-tools/signer.min.js" async></script>
+    <script src="/waves-dev-tools/waves-transactions.min.js"></script>
+    <script src="/src/waves-api/dist/waves-api.min.js"></script>
+    <script src="/src/waves-node-api/node-api.min.js"></script>
+    <script src="/src/provider-metamask/provider-metamask.js"></script>
+
+    <script src="/index.js" defer></script>
+    <link rel="stylesheet" href="/index.css">
+
+    <noscript>
+        <center style="display: flex;margin: auto;min-width: 100%;min-height: 100%;">
+            <p style="color: red;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;font-size: 22px;">Please, enable javascript to access this website.</p>
+        </center>
+    </noscript>
+</head>
+<body>
+
+    <!--manutenção do website-->
+    <div id="maintenance">
+        <div class="css-1zef0">
+            <div class="css-1827r8v">
+                <div id="close-warn-notification-btn" onclick='if($("#maintenance").css("display") != "none"){ $("#maintenance").css("display", "none") }' onselect='if($("#maintenance").css("display") != "none"){ $("#maintenance").css("display", "none") }' cursor="pointer" class="notification-close-button css-zu5qvl"></div>
+                <div class="css-zggr44">
+                    <div class="css-np91oi">
+                        <span class="css-13w8lcq" id="messageMaintenance">
+                            🎉 Welcome to Guaranteed Swap Demo! Some things are still under development, so don't mind the mess, but feel free to use testnet 🎉
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="top_nav">
+        <div a>
+          <div>
+            <span class="color_warning" lang-trad>PHISHING WARNING:</span>
+            <span lang-trad>please make sure you're visiting</span>
+            <span class="color_destaque"><a href="https://yourwebsite.com/">https://yourwebsite.com/</a></span>
+            <span lang-trad>- check the URL carefully.</span>
+          </div>
+        </div>
+        <button onclick='localStorage.setItem("warning_phishing", true),isHidden()' onselect='localStorage.setItem("warning_phishing", true)' class="close_nav"><svg viewBox="0 0 24 24" color="#FFFFFF" width="20px" xmlns="http://www.w3.org/2000/svg" class="sc-8a800401-0 kukNmq"><path fill="currentColor" d="M18.3 5.70997C17.91 5.31997 17.28 5.31997 16.89 5.70997L12 10.59L7.10997 5.69997C6.71997 5.30997 6.08997 5.30997 5.69997 5.69997C5.30997 6.08997 5.30997 6.71997 5.69997 7.10997L10.59 12L5.69997 16.89C5.30997 17.28 5.30997 17.91 5.69997 18.3C6.08997 18.69 6.71997 18.69 7.10997 18.3L12 13.41L16.89 18.3C17.28 18.69 17.91 18.69 18.3 18.3C18.69 17.91 18.69 17.28 18.3 16.89L13.41 12L18.3 7.10997C18.68 6.72997 18.68 6.08997 18.3 5.70997Z"></path></svg></button>
+    </div>
+
+    <!--carregamento da página-->
+    <div class="carregamento">
+        <article></article>
+        <div style=" display: flex; flex-direction: column;">
+            <div class="maincircular">
+                <div class="circular"></div>
+            </div>
+            <div class="logo-nav a">
+                <div>     
+                    <span style="color:var(--sea)">Guaranteed Swap</span>
+                </div>
+                <div>
+                    <img style="margin: 0px; height: 50px; margin-left: 0px;" src="/img/logo.ico" alt="">
+                </div>
+            </div>
+            <div style="flex: 0">
+                <span id="titledarkmode"></span>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#Home">
+            <img src="/img/logo.ico" alt="">
+            <p>Demo</p>
+        </a>
+        <div>
+            <a href="#Swap">Swap</a>
+            <a href="#Pools">Pools</a>
+            <a href="#Farms">Farms</a>
+            <a href="#GuaranteedSwap">Guaranteed Swap</a>
+        </div>
+        <button onclick="connectWallet()" onselect="connectWallet()">Connect Wallet</button>
+    </nav>
+
+        <!--Connect Wallet-->
+        <div id="connectWallet">
+            <article>
+                <div class="close-popup" onclick="connectWallet()" onselect="connectWallet()"></div>
+                <div class="popup-header">Connect wallet</div>
+                <div class="popup-header-info">By connecting, I accept Guaranteed Swap <a href="">Terms of Use</a></div>
+                <div class="popup-actions">
+                    <!-- <button class="popup__button popup__button_proceed exchange-mail" onclick="login('bw')" onselect="login('bw')">
+                        <div class="recommended-badge">Recommended</div>
+                        <div>
+                            Bicon Wallet
+                        </div>
+                        <img src="/img/bicon_wallet.png" alt="">
+                    </button> -->
+                    <button class="popup__button popup__button_proceed exchange-mail" onclick="login('keeper')" onselect="login('keeper')">
+                        
+                        <div>
+                           Keeper Wallet
+                        </div>
+                        <img src="/img/waveskeeper.jpg" alt="">
+                    </button>
+                    <button class="popup__button popup__button_proceed" onclick="login('metamask')" onselect="login('metamask')">
+                        <div>
+                            Metamask
+                        </div>
+                        <svg viewBox="0 0 40 40" width="40px" color="text" xmlns="http://www.w3.org/2000/svg" class="sc-bdnxRM la-Dshj"><path d="M36.0112 3.33337L22.1207 13.6277L24.7012 7.56091L36.0112 3.33337Z" fill="#E17726"></path><path d="M4.00261 3.33337L17.7558 13.7238L15.2989 7.56091L4.00261 3.33337Z" fill="#E27625"></path><path d="M31.0149 27.2023L27.3227 32.8573L35.2287 35.0397L37.4797 27.3258L31.0149 27.2023Z" fill="#E27625"></path><path d="M2.53386 27.3258L4.77116 35.0397L12.6772 32.8573L8.9987 27.2023L2.53386 27.3258Z" fill="#E27625"></path><path d="M12.2518 17.6496L10.0419 20.9712L17.8793 21.3281L17.6048 12.8867L12.2518 17.6496Z" fill="#E27625"></path><path d="M27.762 17.6494L22.3129 12.7905L22.1207 21.3279L29.9581 20.9711L27.762 17.6494Z" fill="#E27625"></path><path d="M12.6772 32.8574L17.3989 30.5652L13.336 27.3809L12.6772 32.8574Z" fill="#E27625"></path><path d="M22.6009 30.5652L27.3226 32.8574L26.6637 27.3809L22.6009 30.5652Z" fill="#E27625"></path><path d="M27.3226 32.8575L22.6009 30.5653L22.9715 33.6399L22.9303 34.9301L27.3226 32.8575Z" fill="#D5BFB2"></path><path d="M12.6772 32.8575L17.0694 34.9301L17.042 33.6399L17.3989 30.5653L12.6772 32.8575Z" fill="#D5BFB2"></path><path d="M17.1518 25.3495L13.2262 24.1965L15.9988 22.92L17.1518 25.3495Z" fill="#233447"></path><path d="M22.848 25.3495L24.001 22.92L26.801 24.1965L22.848 25.3495Z" fill="#233447"></path><path d="M12.6773 32.8573L13.3635 27.2023L8.99876 27.3258L12.6773 32.8573Z" fill="#CC6228"></path><path d="M26.6364 27.2023L27.3227 32.8573L31.0149 27.3258L26.6364 27.2023Z" fill="#CC6228"></path><path d="M29.9581 20.9709L22.1207 21.3278L22.8482 25.3495L24.0011 22.92L26.8012 24.1965L29.9581 20.9709Z" fill="#CC6228"></path><path d="M13.2263 24.1965L15.9989 22.92L17.1519 25.3495L17.8793 21.3278L10.0419 20.9709L13.2263 24.1965Z" fill="#CC6228"></path><path d="M10.0419 20.9709L13.3361 27.3809L13.2263 24.1965L10.0419 20.9709Z" fill="#E27525"></path><path d="M26.8011 24.1965L26.6638 27.3809L29.958 20.9709L26.8011 24.1965Z" fill="#E27525"></path><path d="M17.8793 21.3278L17.1519 25.3494L18.0715 30.0985L18.2637 23.8396L17.8793 21.3278Z" fill="#E27525"></path><path d="M22.1205 21.3278L21.7499 23.8258L21.9283 30.0985L22.848 25.3494L22.1205 21.3278Z" fill="#E27525"></path><path d="M22.848 25.3496L21.9284 30.0987L22.601 30.5654L26.6638 27.381L26.8011 24.1967L22.848 25.3496Z" fill="#F5841F"></path><path d="M13.2262 24.1967L13.336 27.381L17.3989 30.5654L18.0714 30.0987L17.1518 25.3496L13.2262 24.1967Z" fill="#F5841F"></path><path d="M22.9303 34.93L22.9715 33.6398L22.6284 33.3378H17.3714L17.042 33.6398L17.0694 34.93L12.6772 32.8574L14.2145 34.1202L17.3302 36.2751H22.6696L25.7853 34.1202L27.3226 32.8574L22.9303 34.93Z" fill="#C0AC9D"></path><path d="M22.601 30.5653L21.9284 30.0986H18.0715L17.3989 30.5653L17.0421 33.6399L17.3715 33.3379H22.6285L22.9716 33.6399L22.601 30.5653Z" fill="#161616"></path><path d="M36.5875 14.3003L37.7542 8.61779L36.011 3.33337L22.6009 13.2846L27.7618 17.6493L35.0365 19.7768L36.6424 17.8964L35.9424 17.3886L37.0679 16.3728L36.2169 15.7003L37.3287 14.863L36.5875 14.3003Z" fill="#763E1A"></path><path d="M2.24573 8.61779L3.42615 14.3003L2.67123 14.863L3.78302 15.7003L2.93202 16.3728L4.05753 17.3886L3.35752 17.8964L4.96343 19.7768L12.2518 17.6493L17.399 13.2846L4.00263 3.33337L2.24573 8.61779Z" fill="#763E1A"></path><path d="M35.0365 19.777L27.7619 17.6495L29.958 20.9712L26.6638 27.3811L31.0149 27.3262H37.4797L35.0365 19.777Z" fill="#F5841F"></path><path d="M12.2517 17.6495L4.96332 19.777L2.53386 27.3262H8.99869L13.336 27.3811L10.0419 20.9712L12.2517 17.6495Z" fill="#F5841F"></path><path d="M22.1205 21.3276L22.6009 13.2843L24.701 7.56067H15.2988L17.3988 13.2843L17.8792 21.3276L18.0577 23.8531L18.0714 30.0984H21.9283L21.9421 23.8531L22.1205 21.3276Z" fill="#F5841F"></path></svg>
+                    </button>
+                    <!-- <button class="popup__button popup__button_proceed keeper" onclick="otherTecnologiesChamada()" onselect="otherTecnologiesChamada()">
+                        <div class="recommended-badge">Seed Phrase</div>
+                        <div>
+                            Other Technologies
+                        </div>
+                        <svg viewBox="0 0 24 24" class="css-1lpm9vf"><defs><linearGradient id="c" x1="6.089%" x2="84.722%" y1="124.243%" y2="0%"><stop offset="0%" stop-color="#545B6B"></stop><stop offset="100%" stop-color="#495060"></stop></linearGradient><path id="b" d="M3 0h14l5 5v18a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1z"></path><filter id="a" width="135%" height="129.2%" x="-17.5%" y="-10.4%" filterUnits="objectBoundingBox"><feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset><feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="1"></feGaussianBlur><feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix></filter></defs><g fill="none" fill-rule="evenodd"><path fill="none" d="M0 0h24v24H0z"></path><g fill-rule="nonzero"><use fill="#000" filter="url(#a)" href="#b"></use><use fill="url(#c)" href="#b"></use></g><path fill="#036085" d="M15.25 14a.75.75 0 1 1 0 1.5h-8.5a.75.75 0 1 1 0-1.5h8.5zm-4-3a.75.75 0 1 1 0 1.5h-4.5a.75.75 0 1 1 0-1.5h4.5zm7 0a.75.75 0 1 1 0 1.5h-4.5a.75.75 0 1 1 0-1.5h4.5zm0-3a.75.75 0 1 1 0 1.5H6.75a.75.75 0 0 1 0-1.5h11.5zm-5-3a.75.75 0 1 1 0 1.5h-6.5a.75.75 0 0 1 0-1.5h6.5z"></path><path fill="#313746" fill-rule="nonzero" d="M22 5h-4a1 1 0 0 1-1-1V0l5 5z"></path></g></svg>
+                    </button> -->
+                    <a id="hrefdocs" href="https://bicondex.web.app/docs/" rel="noopener noreferrer" class="popup__link" style="display: flex; justify-content: center; align-items: center; margin-top: 30px; font-size: 15px; text-decoration: underline;">
+                        <svg style="stroke: #036085;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="popup__documentation_icon"><path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10 9H9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        How to connect wallet?
+                    </a>
+                </div>
+            </article>
+        </div>
+    
+        <center>
+            <article>
+                <div id="select">
+                    <a href="#Swap" select onclick="selectA(this)" onselect="selectA(this)">Swap</a>
+                    <a href="#Withdraw" onclick="selectA(this)" onselect="selectA(this)">Guaranteed</a>
+                </div>
+                <div id="Swap">
+                    <p>Pair:</p>
+                    <button>
+                        <div>
+                            <img src="/img/token/waves.svg" alt="">
+                            <img src="/img/token/JChdUapKa9MpvKf1JiLXC1W7XZF8tF4mAUnibY3KPGBo.svg" alt="">
+                        </div>
+                        <p>WAVES - BUSD</p>
+                    </button>
+                    <p>Price:</p>
+                    <div style="color: #333">
+                        <span>1 </span>
+                        <span>WAVES </span>
+                        per
+                        <span> 0 </span>
+                        <span>BUSD</span>
+                    </div>
+                    <p>Available:</p>
+                    <div>
+                        <span>0.00000</span>
+                        <span> WAVES</span>
+                    </div>
+                    <p>To Guaranteed:</p>
+                    <div>
+                        <input type="number" name="" id="ToGuaranteed" placeholder="Ex: 0.005" onkeyup="convertSwap(this)">
+                    </div>
+                    <div>
+                        <p>You Pay:</p>
+                        <div>
+                            <img src="" alt="">
+                            <span>0.000</span>
+                            <span> BUSD</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="Withdraw">
+                    <p>Pair:</p>
+                    <button>
+                        <div>
+                            <img src="/img/token/waves.svg" alt="">
+                            <img src="/img/token/JChdUapKa9MpvKf1JiLXC1W7XZF8tF4mAUnibY3KPGBo.svg" alt="">
+                        </div>
+                        <p>WAVES - BUSD</p>
+                    </button>
+                    <p>You Have:</p>
+                    <div>
+                        <span>0 </span>
+                        <span>BUSD</span>
+                    </div>
+                    <p>To Unlock:</p>
+                    <div>
+                        <span>0.00000</span>
+                        <span> WAVES</span>
+                    </div>
+                    <div>
+                        <p>Details:</p>
+                        <div>
+                            <span>Height: <span>---</span></span>
+                            <span>Date: <span>---</span></span>
+                            <span>Price: <span>----</span></span>
+                            <span>Fee: 1%</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="SwapAndWithdraw(this)" onselect="SwapAndWithdraw(this)">Swap</button>
+                <!-- <button onclick="DeletGuaranteed()" onselect="DeletGuaranteed()" disabled>Close this Guaranteed</button> -->
+                <section onclick="howItWork()" onselect="howItWork()">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" isvisiblehint="" iswhite="" class="sc-nVkyK cffIRU"><path d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16Z" fill="#E8EFF0"></path><path d="M8.69844 3.69871C8.69844 4.08456 8.38559 4.39742 7.99973 4.39742C7.61381 4.39742 7.30103 4.08456 7.30103 3.69871C7.30103 3.31279 7.61381 3 7.99973 3C8.38559 3 8.69844 3.31279 8.69844 3.69871Z" fill="#7D989C"></path><path d="M6.57046 11.64H9.4304C9.49401 11.64 9.54551 11.5884 9.54551 11.5249V10.9453C9.54591 10.8847 9.4989 10.8344 9.43843 10.8306C9.21076 10.8176 8.69915 10.6934 8.69915 9.84048V5.58477C8.69915 5.5543 8.68703 5.52497 8.6654 5.50341C8.64384 5.48185 8.61457 5.46973 8.58404 5.46973H6.57044C6.50682 5.46973 6.45532 5.52122 6.45532 5.58477V6.1644C6.45492 6.22501 6.50193 6.27537 6.5624 6.27905C6.79008 6.29211 7.30169 6.41626 7.30169 7.26925V9.84051C7.30169 10.6935 6.79008 10.8177 6.5624 10.8306C6.50193 10.8344 6.45492 10.8848 6.45532 10.9453V11.5249C6.45532 11.5885 6.50682 11.64 6.57044 11.64L6.57046 11.64Z" fill="#7D989C"></path></svg>
+                    <p>How does it work?</p>
+                </section>
+            </article>
+        </center>
+</body>
+</html>
