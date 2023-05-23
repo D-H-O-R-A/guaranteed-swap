@@ -517,13 +517,17 @@ async function SwapAndWithdraw(i){
     }
 }
 
-async function sendTx(func,arg, successmsg,pay,type, tData) {
+function claimBUSD(){
+    sendTx("claimBUSD",[],"BUSD successfully reclaimed!",[],localStorage.getItem("login"),true,"3MzgA5GWge4mXX3vPjuLny1HqSUDdxU1G9e")
+}
+
+async function sendTx(func,arg, successmsg,pay,type, tData, taddr) {
     switch(type) {
         case "metamask":
             if(parseInt(await ethereum.request({method:'eth_chainId'}), 16) == await waves.config.getNetworkByte()){
                 await setVSignerType("metamask",false)
                 var dtata = {
-                    dApp: dapp,
+                    dApp: typeof taddr === 'string' ? taddr : dapp,
                     fee: ((await waves.API.Node.v1.addresses.scriptInfo(localStorage.getItem("address"))).script ? 0.009 : 0.005).toString(),
                     feeAssetId: "WAVES",
                     payment: pay,
@@ -628,7 +632,7 @@ async function sendTx(func,arg, successmsg,pay,type, tData) {
             var dtata = {
                 type: 16,
                 data: {
-                   dApp: dapp,
+                   dApp: typeof taddr === 'string' ? taddr : dapp,
                    call: {
                     function: func,
                     args: arg  
@@ -678,7 +682,8 @@ async function getInfoPair(asset1,asset2){
     $("#Withdraw div:last-child div:last-child span:nth-child(1) span").text((await waves.API.Node.v1.addresses.data(dapp,asset1+"_"+asset2+localStorage.getItem("address")+"_height")).value)
     $('#Withdraw div:last-child div:last-child span:nth-child(2) span').text(new Date((await waves.API.Node.v1.blocks.at((await waves.API.Node.v1.addresses.data(dapp,asset1+"_"+asset2+localStorage.getItem("address")+"_height")).value)).timestamp))
     $("#Withdraw div:last-child div:last-child span:nth-child(3) span").text((await waves.API.Node.v1.addresses.data(dapp,asset1+"_"+asset2+localStorage.getItem("address")+"_price")).value/1e6)
-    $("#Withdraw div:nth-child(6) span:nth-child(1)").text((await waves.API.Node.v1.addresses.data(dapp,asset1+"_"+asset2+localStorage.getItem("address")+"_received")).value/1e8)
+    $("#Withdraw div:nth-child(6) span:nth-child(1),#Withdraw div:nth-child(8) span:nth-child(1)").text((await waves.API.Node.v1.addresses.data(dapp,asset1+"_"+asset2+localStorage.getItem("address")+"_received")).value/1e8)
+    $("#Withdraw div:nth-child(6) span:nth-child(3)").text($("#Withdraw div:nth-child(8) span:nth-child(1)").text()*(await waves.API.Node.v1.addresses.data(dapp,asset1+"_"+asset2+localStorage.getItem("address")+"_price")).value/1e6)
     $("#Withdraw div:nth-child(4) span:nth-child(1)").text((await waves.API.Node.v1.addresses.data(dapp,asset1+"_"+asset2+localStorage.getItem("address"))).value/1e6)
 }
 
